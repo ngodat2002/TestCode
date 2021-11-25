@@ -1,0 +1,168 @@
+﻿<Page
+    x:Class="AppUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppUWP"
+    xmlns:models="using:AppUWP.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#fff">
+
+    <SplitView OpenPaneLength="220" DisplayMode="CompactInline" IsPaneOpen="True">
+        <SplitView.Pane>
+            <RelativePanel Background="#242223">
+                <ListView RelativePanel.Below="BtnMenuFlay" x:Name="Menu" Loaded="ListView_Loaded">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:MenuModel">
+                            <ListViewItem Tapped="ListViewItem_Tapped">
+                                <Grid Width="200" Margin="0 20">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="25" Height="25" Grid.Column="0" Margin="10 0 30 0" Source="{x:Bind Icon}" />
+                                    <TextBlock Foreground="#fff" FontWeight="SemiBold" Grid.Column="1" Text="{x:Bind Name}" />
+                                </Grid>
+                            </ListViewItem>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListViewItem x:Name="btnHome"  Margin="0 60 0 0">
+                    <Grid  Tapped="Grid_Tapped" Width="200" Padding="0 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Margin="10 0 30 0" Source="/Assets/button1.png" />
+                        <TextBlock Foreground="#fff" FontWeight="SemiBold" Grid.Column="1" Text="Home" />
+                    </Grid>
+
+                </ListViewItem>
+                <DropDownButton RelativePanel.Below="btnHome" x:Name="BtnMenuFlay" Width="220" BorderThickness="0" Padding="10 20"  Background="Transparent" FontWeight="SemiBold">
+                    <Grid Width="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Margin="10 0 30 0" Source="/Assets/button2.png" />
+                        <TextBlock Foreground="#fff" VerticalAlignment="Center" FontWeight="SemiBold" Grid.Column="1" Text="Eat-in" />
+                    </Grid>
+                    <DropDownButton.Flyout>
+                        <Flyout>
+                            <ListView x:Name="MenuFlyout">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:Category">
+                                        <ListViewItem Tapped="GridViewItem_Tapped">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto"/>
+                                                    <RowDefinition Height="1*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Width="50" Height="50" Grid.Column="0" Margin="10 0 30 0" Source="{x:Bind icon}" />
+                                                <TextBlock VerticalAlignment="Center" Foreground="#fff" FontWeight="SemiBold" Grid.Column="1" Text="{x:Bind name}" />
+                                            </Grid>
+                                        </ListViewItem>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Flyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+            </RelativePanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" Background="#b30631" Padding="0 10">
+                            <RelativePanel HorizontalAlignment="Center">
+                                <StackPanel>
+                                    <Image  Width="80" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Assets/StoreLogo.png" />
+                                    <TextBlock Foreground="#fff"  Text="Fast Foods" FontSize="18"  FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                                    <TextBlock Foreground="#fff" Text="Restourents"  FontSize="14" FontWeight="SemiLight" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </RelativePanel>
+                        </Border>
+                        <TextBlock Grid.Column="2" Foreground="#333" Text="C# UI Designing By Group 3" Margin="20,10,0,0" FontSize="20" />
+                        <Grid Grid.Column="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <HyperlinkButton Grid.Column="0" Padding="0 15">
+                                <Image Source="/Assets/button8.png" Width="24" Height="24"/>
+                            </HyperlinkButton>
+                            <HyperlinkButton Grid.Column="1">
+                                <Image Source="/Assets/button9.png" Width="24" Height="24"/>
+                            </HyperlinkButton>
+                            <HyperlinkButton Grid.Column="2">
+                                <Image Source="/Assets/button10.png" Width="24" Height="24"/>
+                            </HyperlinkButton>
+                        </Grid>
+                        <Grid Grid.Column="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <HyperlinkButton Grid.Column="0" Padding="0 15">
+                                <Image Source="/Assets/button11.png" Width="24" Height="24"/>
+                            </HyperlinkButton>
+                            <HyperlinkButton Grid.Column="1">
+                                <Image Source="/Assets/button12.png" Width="24" Height="24"/>
+                            </HyperlinkButton>
+                            <HyperlinkButton Grid.Column="2">
+                                <Image Source="/Assets/button13.png" Width="24" Height="24"/>
+                            </HyperlinkButton>
+                        </Grid>
+                    </Grid>
+                    <Border Grid.Row="0" Background="#b60531"></Border>
+                    <Frame Grid.Row="2" x:Name="MainFrame" />
+                </Grid>
+            </ScrollViewer>
+        </SplitView.Content>
+    </SplitView>
+</Page>
